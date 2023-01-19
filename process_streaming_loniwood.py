@@ -38,6 +38,7 @@ sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
 # read from a file to get some fake data
 input_file = open("grosses.csv", "r")
+output_file = open("out9.txt",'w')
 
 # use the built0in sorted() function to get them in chronological order
 reversed = sorted(input_file)
@@ -54,12 +55,13 @@ for row in reader:
     fstring_message = f"[{week_ending}, {week_number}, {weekly_gross_overall}, {show}, {theatre}, {weekly_gross}, {potential_gross}, {avg_ticket_price}, {top_ticket_price}, {seats_sold}, {seats_in_theatre}, {pct_capacity}, {performances}, {previews}]"
     
     # prepare a binary (1s and 0s) message to stream
+    output_file.write(fstring_message)
     MESSAGE = fstring_message.encode()
 
     # use the socket sendto() method to send the message
     sock.sendto(MESSAGE, address_tuple)
     print (f"Sent: {MESSAGE} on port {port}.")
-
+    output_file.write(f"Sent:{MESSAGE} on port{port},\n")
     # sleep for a few seconds
     time.sleep(3)
 
