@@ -63,5 +63,4 @@ for row in reader:
     print (f"Sent: {MESSAGE} on port {port}.")
     output_file.write(f"Sent:{MESSAGE} on port{port},\n")
     # sleep for a few seconds
-    time.sleep(3)
-
+    time.sleep(1)
